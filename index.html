@@ -1,89 +1,147 @@
 <!DOCTYPE html>
-
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chúc Mừng 20/11</title>
+
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fff5e6; /* nền pastel nhẹ */
-            padding: 40px;
-            text-align: center;
+        :root {
+            --bg: #fff8ef;
+            --card-bg: #ffffff;
+            --primary: #e67e22;
+            --text: #5d4037;
+            --border: #ffcfaa;
         }
 
-```
-    .container {
-        background-color: #ffffff;
-        max-width: 700px;
-        margin: auto;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        border: 2px solid #ffcc99;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
+        }
 
-    h2 {
-        margin-top: 0;
-        font-size: 30px;
-        color: #e67e22;
-    }
+        .container {
+            background: var(--card-bg);
+            max-width: 680px;
+            margin: auto;
+            padding: 28px;
+            border-radius: 22px;
+            border: 2px solid var(--border);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 5;
+            animation: fadeIn 1.2s ease;
+        }
 
-    p {
-        font-size: 17px;
-        color: #5d4037;
-        margin-bottom: 20px;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    video {
-        width: 65%;
-        border-radius: 12px;
-        outline: none;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
+        h2 {
+            font-size: 18px;
+            color: var(--primary);
+            margin: 0 0 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
 
-    .decor {
-        margin-top: 20px;
-    }
+        p {
+            font-size: 17px;
+            color: var(--text);
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
 
-    .decor img {
-        width: 40px;
-        margin: 0 6px;
-        vertical-align: middle;
-        animation: float 2s ease-in-out infinite;
-    }
+        video {
+            width: 100%;
+            max-width: 520px;
+            border-radius: 14px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+        }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-</style>
-```
+        .decor {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
 
+        .decor span {
+            font-size: 30px;
+            display: inline-block;
+            animation: float 2.8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Hoa rơi */
+        .flower-fall {
+            position: fixed;
+            top: -20px;
+            font-size: 22px;
+            animation: fall linear infinite;
+            opacity: 0.9;
+            z-index: 1;
+            user-select: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            h2 { font-size: 25px; }
+            p { font-size: 15px; }
+            .decor span { font-size: 34px; }
+            .flower-fall { font-size: 26px; }
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <h2>🌸 Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11 🌸</h2>
-        <p>Cảm ơn thầy cô vì tất cả những gì đã dạy dỗ và truyền cảm hứng cho chúng em!</p>
+        <p>Cảm ơn thầy cô vì tất cả những kiến thức, sự tận tâm và tình yêu thương đã truyền dạy cho chúng em!</p>
 
-```
-    <video controls>
-        <source src="video.mp4" type="video/mp4">
-        Trình duyệt không hỗ trợ video.
-    </video>
+        <video controls>
+            <source src="video.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ phát video.
+        </video>
 
-    <div style="margin-top: 20px;"
-        <span class="flower">🌺</span>
-        <span class="flower">🌸</span>
-        <span class="flower">🌷</span>
-        <span class="flower">💐</span>
-        <span class="flower">🌼</span>
+        <div class="decor">
+            <span>🌺</span>
+            <span>🌸</span>
+            <span>🌷</span>
+            <span>💐</span>
+            <span>🌼</span>
+        </div>
     </div>
-</div>
-```
+
+    <script>
+        const flowers = ["🌸", "🌺", "🌷", "💐", "🌼"];    
+
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower-fall");
+            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 9000);
+        }
+
+        setInterval(createFlower, 150);
+    </script>
 
 </body>
-
 </html>
